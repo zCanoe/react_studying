@@ -1,11 +1,15 @@
+// react 核心库文件，包括react的生命周期和组件创建方法
 import React from 'react';
+// react渲染到dom相关到库，负责管理dom的操作 client用于浏览器处理
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+// 性能评分指标
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+    //  严格模式
   <React.StrictMode>
     <App />
   </React.StrictMode>
