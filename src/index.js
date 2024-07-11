@@ -3,7 +3,7 @@ import React from 'react';
 // react渲染到dom相关到库，负责管理dom的操作 client用于浏览器处理
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import App from './transition/App';
 // 性能评分指标
 import reportWebVitals from './reportWebVitals';
 
