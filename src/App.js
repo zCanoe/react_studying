@@ -1,40 +1,39 @@
 import './App.css';
 import React, {
-  useEffect, useLayoutEffect, useState,
+  useEffect, useRef, useState,
 } from 'react';
+import {createStore} from '@reduxjs/toolkit';
 
-function Bpp() {
-  const [show, setShow] = useState(false);
-
-  return (
-      <div>
-        { show && <App /> }
-        <button onClick={() => { setShow(!show) }}>bottom</button>
-      </div>
-  )
-}
 
 
 function App() {
-  const [name, setName] = useState("canoe");
-  const [count, setCount] = useState(0);
+  function reducer(state, action) {
+    if(typeof state === 'undefined') return 0;
 
-  useEffect(() => {
-    console.log("useEffect状态发生变化", count);
-  }, []);
+    switch (action.type) {
+      case 'counter/incremented':
+        return state + 1;
+      case 'counter/decremented':
+        return state - 1;
+    }
+  }
 
-  useLayoutEffect(() => {
-    console.log("useLayoutEffect状态发生变化", count);
-  }, []);
+  const store = createStore(reducer);
+
+  store.subscribe(() => {
+    text.current.innerText = store.getState();
+    console.log(text.current.innerText);
+    console.log("订阅函数");
+  })
+
+  const text = useRef();
 
   return (
         <div>
-          {count}
-          {name}
-          <button onClick={() => { setName("canoe1") }}>name</button>
-          <button onClick={() => { setCount((count) => count + 1) }}>count</button>
+          <span ref={text}></span>
+          <button onClick={() => { store.dispatch({ type: 'counter/incremented' }) }}>+1</button>
         </div>
   )
 }
 
-export default Bpp;
+export default App;
