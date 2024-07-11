@@ -2,15 +2,23 @@ import './App.css';
 import React, {
   forwardRef,
   useCallback,
-  useEffect, useLayoutEffect, useRef, useState,
+  useEffect, useImperativeHandle, useLayoutEffect, useRef, useState,
 } from 'react';
 
 const Bpp = forwardRef((prop, ref) => {
   const { click } = prop;
+  const h1 = useRef();
+
+  // 自定义转发ref
+  useImperativeHandle(ref, () => ({
+    alters() {
+      h1.current.innerHtml = "11";
+    }
+  }))
 
   return (
       <div>
-        <h1 ref={ref} onClick={click}>Bpp</h1>
+        <h1 ref={h1} onClick={click}>Bpp</h1>
       </div>
   )
 })
