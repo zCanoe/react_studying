@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script src="./demo/01.js"></script>
+<script>
+	function todos(action = {}, state = '') {
+		switch (action.type) {
+			case "ADD_TODO":
+				return state.concat([action.text])
+			default:
+				return state;
+		}
+	}
+
+	function counter(action = {}, state = 0) {
+		switch (action.type) {
+			case "INCREMENT":
+				return state + 1;
+			case "DECREMENT":
+				return state - 1;
+			default:
+				return state;
+		}
+	}
+
+	const initState = {
+		milk: 0
+	}
+
+	function log({ getState }) {
+		return next => action => {
+			console.log("执行前");
+			const a = next(action, getState());
+			console.log("执行后");
+			return a;
+		}
+	}
+
+  // const store = createStore((action, state = initState) => {
+	// 	switch (action.type) {
+	// 		case "add":
+	// 			return { ...state, milk: state.milk + action.count };
+	// 		case "dec":
+	// 			state -= 1;
+	// 			return { ...state, milk: state.milk - action.count };
+	// 		default:
+	// 			return state;
+	// 	}
+	// });
+
+	const store = createStore(combineReducers({ todos, counter }), applyMiddleware(log))
+	store.subscribe(() => { console.log(11); });
+	store.dispatch({ type: "INCREMENT" })
+	console.log(store.getState());
+</script>
