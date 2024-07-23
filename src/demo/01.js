@@ -1,12 +1,18 @@
-function applyMiddleware(middleware) {
+function compose(...args) {
+  console.log(args);
+  return (v) => args.reduceRight((res, cb) => cb(res), v);
+}
+
+function applyMiddleware(...middle) {
   return (createStore) => (reducer) => {
     const store = createStore(reducer);
 
+    const patches = middle.map(item => item(store));
+    console.log(compose(...middle));
     return {
       ...store,
-      dispatch: middleware(store)(store.dispatch)
+      dispatch: compose(...patches)(store.dispatch)
     }
-
   }
 }
 

@@ -43,6 +43,15 @@
 		}
 	}
 
+	function log2({ getState }) {
+		return next => action => {
+			console.log("执行前1");
+			const a = next(action, getState());
+			console.log("执行后1");
+			return a;
+		}
+	}
+
   // const store = createStore((action, state = initState) => {
 	// 	switch (action.type) {
 	// 		case "add":
@@ -55,8 +64,8 @@
 	// 	}
 	// });
 
-	const store = createStore(combineReducers({ todos, counter }), applyMiddleware(log))
+	const store = createStore(combineReducers({ todos, counter }), applyMiddleware(log, log2))
 	store.subscribe(() => { console.log(11); });
-	store.dispatch({ type: "INCREMENT" })
-	console.log(store.getState());
+	store.dispatch({ type: "INCREMENT" });
+	// console.log(store.getState(), compose((a) => a+1, (a) => a**2)(2));
 </script>
