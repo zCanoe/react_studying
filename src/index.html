@@ -23,21 +23,23 @@
 			super(props);
 			this.state = {
 				current: 0,
-				movies: ['星际穿越', '大话西游', 'x战警']
+				movies: ['星际穿越', '大话西游', 'x战警'],
+				isShow: false,
 			}
 		}
 
 		render() {
-			const { movies, current } = this.state;
+			const { isShow, movies, current } = this.state;
 
 			const cb = (item,index) => {
 				return  <li className={ current === index ? 'active' : "" } onClick={() => this.setState({ current: index })} key={index}>{item}</li>
 			}
 
 			return (
-					<div>{
-						movies.map(cb)
-					}
+					<div>
+						<button onClick={ () => {this.setState({ isShow: !isShow })} }>切换</button>
+						{ isShow && <h2>react</h2> }
+						<h2 style={{display: isShow ? "block" : 'none'}}>react2</h2>
 					</div>
 			)
 		}
