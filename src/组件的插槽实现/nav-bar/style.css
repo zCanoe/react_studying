@@ -1,0 +1,24 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    height: 50px;
+    display: flex;
+}
+
+.left {
+    background-color: red;
+    width: 10%;
+}
+
+.center {
+    background-color: yellow;
+    width: 80%;
+}
+
+.right {
+    background-color: red;
+    width: 10%;
+}
