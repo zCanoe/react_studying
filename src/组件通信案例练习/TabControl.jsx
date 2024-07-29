@@ -18,17 +18,11 @@ export class TabControl extends Component {
   cb = (item, index) => {
     const { currentIndex } = this.state;
     return (
-        <div key={index} onClick={() => this.handleClick(index)} className={ this.getClassName(
-            currentIndex, index)}>
+        <div key={index} onClick={() => this.handleClick(index)} className={ `item ${currentIndex === index ? 'active' : ''}`}>
           { item }
         </div>
     )
   }
-
-  getClassName(currentIndex, index) {
-    return `item ${currentIndex === index ? 'active' : ''}`;
-  }
-
   render() {
     const { titles } = this.props;
     return (
