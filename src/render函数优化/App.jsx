@@ -1,7 +1,7 @@
 import React, {Component, PureComponent} from 'react';
 import Home from './Home';
 
-class App extends Component {
+class App extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
