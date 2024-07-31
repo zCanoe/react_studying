@@ -3,7 +3,7 @@ import Home from './Home';
 
 class App extends PureComponent {
   constructor(props) {
-    super(props);
+    super(props); 
     this.state = {
       msg: "a"
     }
