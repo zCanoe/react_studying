@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import AppWrapper from './style';
+import Home from './home';
 class App extends Component {
   render() {
     return (
@@ -13,6 +14,8 @@ class App extends Component {
             <p>pronounce</p>
             <p>pronounce</p>
           </div>
+
+          <Home />
         </AppWrapper>
     );
   }
